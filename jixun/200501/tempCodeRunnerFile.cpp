@@ -1,0 +1,1 @@
+tmpans=min(tmpans,max(a[i].b,a[(i+1)%3].b+a[(i+2)%3].b) * (a[i].a+max(a[(i+1)%3].a,a[(i+2)%3].a)) );
