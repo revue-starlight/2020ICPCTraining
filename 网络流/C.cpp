@@ -1,48 +1,61 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int maxn=110;
-const int maxm=1010;
-int n,m,tot;
-int custom_buy[maxn],c[maxm];
-int head[maxn];
-struct EDGE{
-    int u,v,w,next;
-}edge[maxn*maxm];
-int heads[maxn];
-void add_edge(int u,int v,int w){
-    edge[tot].u=u; edge[tot].v=v; edge[tot].w=w; heads[u]=tot++;
+#define int long long
+const int maxm=1e2;
+const int maxn=1e1;
+struct node{
+    int e,v,nxt;
+}edge[maxm<<1];
+int cnt,n;
+inline void add_e(int u,int v,int w){
+    edge[cnt].e=v;
+    edge[cnt].v=w;
+    edge[cnt].nxt=head[u];
+    head[u]=cnt++;
 }
-vector <int> custom_num[maxn];
-int main(){
-    cin>>n>>m;
-    for (int i=1;i<=m;i++) cout<<c[i]<<endl;
-    for (int i=1;i<=n;i++) {
-        int k;
-        cin>>k;
-        while (k--){
-            int x;
-            cin>>x;
-            custom_num[i].push_back(x);
-            int floww=0;
-            if (head[x]==0){
-                floww+=c[x];
-                head[x]=i;
+
+struct NT_flows{
+    int head[maxn],dis[maxn];
+    bool bfs(){
+        memset(dis,-1,sizeof(dis));
+        dfs[1]=0;
+        queue <int> q;
+        q.push(1);
+        while (!q.empty()){
+            int r=q.front(); q.pop();
+            for (int i=head[r];i!=-1;i=edge[i].nxt){
+                int j=edge[i].e;
+                if (dis[j]==-1 && edge[i].v){
+                    dis[j]=dis[r]+1;
+                    q.push(j);
+                }
             }
-            else{
-                add_edge(head[x],i,INT_MAX);
-            }
-            if (floww) add_edge(0,i,floww); 
         }
-        cin>>custom_buy[i];
     }
-    for (int i=1;i<=n;i++){
-            add_edge(i,n+1,custom_buy[i]);
+
+    int dfs(int u,int flo){
+        if (u==n) return flo;
+        int delta=flo;
+        for (int i=head[u];i!=-1;i=edge[i].nxt){
+            int v=edge[i].e;
+            if (dis[v]==(dis[u]+1) && (edge[i].v)>0){
+                if d=dfs(v,min(delta,edge[i].v));
+                edge[i].v-=d;
+                edge[i^1].v+=d;
+                delta-=d;
+                if (!delta) break;
+            }
+        }
+        return flo-delta;
     }
-// 网络流开始.
-    int ans=0;
-    while (bfs()){
-        ans+=dfs(1,INF);
+    int dini(){
+        int ans=0;
+        while (bfs()){
+            ans+=dfs(1,INF)
+        }
+        rturn ans;
     }
-    cout<<ans<<endl;
-    return 0;
+}
+int32_t main(){
+
 }
