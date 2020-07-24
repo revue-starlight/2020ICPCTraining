@@ -1,0 +1,1 @@
+int F(int x){return f[x]==x?x:f[x]=F(f[x]);}
