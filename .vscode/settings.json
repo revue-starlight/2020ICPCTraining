@@ -106,6 +106,9 @@
         "climits": "cpp",
         "cstdalign": "cpp",
         "cstdbool": "cpp",
-        "ctgmath": "cpp"
+        "ctgmath": "cpp",
+        "editor.lineHighlightBackground": "#1E1E1EAA",
+        "powermode.enabled":"true",
+
     }
 }

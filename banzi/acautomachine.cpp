@@ -2,7 +2,7 @@
 using namespace std;
 const int maxn=5e5+100;
 queue <int> q;
-
+//太慢了我人都傻了
 struct acautomachine{
     struct abc{
         int fail,last,cnt;
